@@ -12,7 +12,7 @@
      Görsel/ses kaynakları yalnızca Deezer ve Apple CDN'leri ile sınırlıdır.
      Script'i değiştirdiysen: python3 tools/csp-hash.py -->
 <!--CSP-START-->
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-D58Z39abX/5ZhGA7LX2a7k340PyRbhhzPG2vdmLw7iI=' https://api.deezer.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.dzcdn.net https://*.mzstatic.com https://api.deezer.com; media-src https://*.dzcdn.net https://*.itunes.apple.com https://*.mzstatic.com; connect-src https://api.deezer.com https://itunes.apple.com https://musicbrainz.org https://labs.api.listenbrainz.org; font-src 'self' data:; base-uri 'none'; form-action 'none'; object-src 'none'; frame-src 'none'; worker-src 'none'; manifest-src 'none';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-+8it0pUkljFu93r1Y7SRqqIM/rymgkB0jxkwQAWyoFI=' https://api.deezer.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.dzcdn.net https://*.mzstatic.com https://api.deezer.com; media-src https://*.dzcdn.net https://*.itunes.apple.com https://*.mzstatic.com; connect-src https://api.deezer.com https://itunes.apple.com https://musicbrainz.org https://labs.api.listenbrainz.org https://*.supabase.co; font-src 'self' data:; base-uri 'none'; form-action 'none'; object-src 'none'; frame-src 'none'; worker-src 'none'; manifest-src 'none';">
 <!--CSP-END-->
 <meta property="og:title" content="BenzerSes — Benzer sanatçı ve şarkı keşfi">
 <meta property="og:description" content="Bir şarkı veya sanatçı yaz; sana benzeyenleri bul.">
@@ -233,6 +233,52 @@ section.blk{margin:44px 0 0}
 .badge .dot{width:6px;height:6px;border-radius:50%;background:var(--ok)}
 .badge.lb .dot{background:var(--c1)} .badge.cur .dot{background:var(--warn)}
 
+/* ================= FORM / HESAP / YÖNETİM ================= */
+.field{margin:12px 0}
+.field label{display:block;font-size:12.5px;color:var(--dim);margin-bottom:6px;font-weight:600}
+.field input[type=email],.field input[type=password],.field input[type=text]{
+  width:100%;background:rgba(0,0,0,.28);border:1px solid var(--line2);border-radius:12px;
+  padding:12px 13px;color:var(--txt);font-size:14.5px;outline:0;transition:.15s;font-family:inherit}
+.field input:focus{border-color:rgba(168,85,247,.8);box-shadow:0 0 0 4px rgba(168,85,247,.13)}
+.chk{display:flex;gap:9px;align-items:flex-start;font-size:12.7px;color:var(--dim);line-height:1.5;cursor:pointer}
+.chk input{margin-top:2px;accent-color:#a855f7;width:16px;height:16px;flex:0 0 auto}
+.authtabs{display:flex;gap:6px;background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:12px;padding:4px;margin-bottom:16px}
+.authtabs button{flex:1;background:transparent;border:0;color:var(--dim);padding:9px;border-radius:9px;cursor:pointer;font-weight:650;font-size:13.5px}
+.authtabs button.on{background:var(--grad);color:#fff}
+.autherr{display:none;background:rgba(236,72,153,.12);border:1px solid rgba(236,72,153,.35);color:#fda4d0;
+  border-radius:11px;padding:10px 12px;font-size:12.8px;margin:12px 0;line-height:1.5}
+.autherr.on{display:block}
+.autherr.ok{background:rgba(52,211,153,.1);border-color:rgba(52,211,153,.35);color:#6ee7b7}
+.uchip{display:flex;align-items:center;gap:9px;background:var(--surface);border:1px solid var(--line2);
+  border-radius:30px;padding:5px 13px 5px 6px;cursor:pointer;transition:.15s}
+.uchip:hover{background:var(--surface2)}
+.uchip .av{width:26px;height:26px;border-radius:50%;background:var(--grad);display:grid;place-items:center;
+  font-size:12.5px;font-weight:800;color:#fff;flex:0 0 auto}
+.uchip b{font-size:13px;font-weight:650;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.statgrid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-bottom:22px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:15px 16px;min-width:0}
+.stat b{display:block;font-size:24px;font-weight:800;letter-spacing:-.6px;background:var(--grad);
+  -webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.stat span{font-size:11.8px;color:var(--dim);letter-spacing:.2px}
+.tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;background:var(--surface)}
+table.tbl{width:100%;border-collapse:collapse;font-size:13px;min-width:680px}
+table.tbl th{text-align:left;padding:11px 13px;color:var(--dim2);font-size:11px;text-transform:uppercase;
+  letter-spacing:.8px;border-bottom:1px solid var(--line);white-space:nowrap;font-weight:800}
+table.tbl td{padding:10px 13px;border-bottom:1px solid rgba(255,255,255,.045);vertical-align:middle}
+table.tbl tr:last-child td{border-bottom:0}
+table.tbl tr:hover td{background:rgba(255,255,255,.025)}
+.mono-s{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.8px;color:var(--dim);word-break:break-all}
+.pill{display:inline-block;font-size:10.5px;font-weight:700;border-radius:20px;padding:3px 9px;border:1px solid var(--line2);color:var(--dim);white-space:nowrap}
+.pill.adm{background:rgba(168,85,247,.18);border-color:rgba(168,85,247,.5);color:#d8b4fe}
+.pill.ok{background:rgba(52,211,153,.13);border-color:rgba(52,211,153,.4);color:#6ee7b7}
+.pill.no{background:rgba(251,191,36,.1);border-color:rgba(251,191,36,.35);color:#fcd34d}
+.mini{background:var(--surface);border:1px solid var(--line);border-radius:9px;color:var(--dim);cursor:pointer;
+  padding:5px 9px;font-size:11.5px;font-weight:650;transition:.15s;margin:2px 2px 2px 0}
+.mini:hover{color:var(--txt);border-color:var(--line2);background:var(--surface2)}
+.mini.danger:hover{background:rgba(236,72,153,.16);border-color:rgba(236,72,153,.5);color:#fda4d0}
+.authtabbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+@media(max-width:760px){.uchip b{max-width:70px}.topnav g .lbl{display:none}}
+
 /* ================= PLAYER ================= */
 #player{
   position:fixed;left:0;right:0;bottom:0;z-index:90;transform:translateY(115%);
@@ -283,7 +329,7 @@ footer.foot .fr{display:flex;gap:14px;flex-wrap:wrap;align-items:center;justify-
 footer.foot a{color:var(--dim);border-bottom:1px dotted var(--line2)}
 .modal{position:fixed;inset:0;z-index:150;display:none;background:rgba(6,4,12,.78);backdrop-filter:blur(7px);padding:24px}
 .modal.on{display:grid;place-items:center}
-.modal .card{background:linear-gradient(180deg,#1a1030,#120b22);border:1px solid var(--line2);border-radius:24px;
+.modal .card{position:relative;background:linear-gradient(180deg,#1a1030,#120b22);border:1px solid var(--line2);border-radius:24px;
   padding:28px;max-width:620px;width:100%;max-height:82vh;overflow:auto;box-shadow:var(--sh)}
 .modal h3{margin:0 0 12px;font-size:22px}
 .modal h4{margin:20px 0 7px;font-size:14.5px;letter-spacing:.2px}
@@ -330,6 +376,7 @@ footer.foot a{color:var(--dim);border-bottom:1px dotted var(--line2)}
       <button data-act="home">Keşfet</button>
       <button data-act="scroll-favs"><span class="lbl">Favorilerim</span> <span id="favCount"></span></button>
       <button data-act="about">Nasıl çalışır?</button>
+      <span id="authArea" style="display:flex;align-items:center;gap:7px"></span>
     </nav>
   </div>
 </header>
@@ -338,7 +385,8 @@ footer.foot a{color:var(--dim);border-bottom:1px dotted var(--line2)}
 
 <footer class="foot">
   <div class="wrap fr">
-    <span>BenzerSes · kişisel bir müzik keşif denemesi — üyelik yok, reklam yok, izleme yok.
+    <span>BenzerSes · kişisel bir müzik keşif denemesi — üyelik isteğe bağlı, reklam yok, izleme yok.
+      <a href="#/gizlilik" style="color:#d8b4fe;border-bottom:1px dotted">Aydınlatma metni</a>
       <button class="btn ghost" style="padding:4px 9px;font-size:11.5px;margin-left:6px" data-act="wipe">verilerimi sil</button></span>
     <span>Veri: Deezer · Apple iTunes · MusicBrainz · ListenBrainz — önizlemeler 30 sn.</span>
   </div>
@@ -364,10 +412,46 @@ footer.foot a{color:var(--dim);border-bottom:1px dotted var(--line2)}
 
 <div class="toast" id="toast"></div>
 
+<div class="modal" id="authModal">
+  <div class="card" style="max-width:450px">
+    <button class="iconbtn" data-act="auth-close" aria-label="Kapat" style="position:absolute;right:12px;top:12px">✕</button>
+    <h3 id="authTitle" style="margin-bottom:14px">Hesabına giriş yap</h3>
+    <div class="authtabs" id="authTabs">
+      <button class="on" data-act="auth-tab" data-tab="login" type="button">Giriş yap</button>
+      <button data-act="auth-tab" data-tab="reg" type="button">Kayıt ol</button>
+    </div>
+    <form id="authForm" autocomplete="on" novalidate>
+      <div class="field" id="fUserWrap" style="display:none">
+        <label for="fUser">Kullanıcı adı</label>
+        <input id="fUser" type="text" maxlength="24" placeholder="örn. muzik_kurdu" autocomplete="username">
+      </div>
+      <div class="field">
+        <label for="fEmail">E-posta</label>
+        <input id="fEmail" type="email" maxlength="120" placeholder="ornek@eposta.com" autocomplete="email">
+      </div>
+      <div class="field">
+        <label for="fPass">Şifre</label>
+        <input id="fPass" type="password" maxlength="72" placeholder="en az 8 karakter" autocomplete="current-password">
+      </div>
+      <div class="field" id="fConsentWrap" style="display:none">
+        <label class="chk"><input type="checkbox" id="fRiza">
+          <span><b>Verilerimin işlenmesine onay veriyorum.</b> Kullanıcı adı, e-posta, giriş bilgileri ve site içi
+          aktivitem (dinlemeler / aramalar) hesap hizmeti ve güvenlik için saklanır. Ayrıntılar:
+          <a href="#/gizlilik" data-act="auth-close" style="color:#d8b4fe;border-bottom:1px dotted">Aydınlatma Metni</a></span></label>
+      </div>
+      <div class="autherr" id="authErr"></div>
+      <div style="display:flex;gap:9px;flex-wrap:wrap;margin-top:6px">
+        <button class="btn pri" type="submit" id="authSubmit" style="flex:1;justify-content:center">Giriş yap</button>
+        <button class="btn ghost" type="button" id="authForgot">Şifremi unuttum</button>
+      </div>
+    </form>
+    <div class="note" style="margin-top:14px" id="authNote"></div>
+  </div>
+</div>
 <div class="modal" id="aboutModal">
   <div class="card">
     <h3>Nasıl çalışır? 🎧</h3>
-    <p>BenzerSes, girdiğin sanatçı veya şarkıya <b>benzeyenleri üç katmanlı bir motorla</b> bulur. Sunucu yok — her şey senin tarayıcında çalışır, aramaların kaydedilmez.</p>
+    <p>BenzerSes, girdiğin sanatçı veya şarkıya <b>benzeyenleri üç katmanlı bir motorla</b> bulur. Sunucu yok — arama ve keşif tamamen tarayıcında çalışır. Hesap açarsan giriş ve site içi aktiviten, açık rızanla yalnızca hesap hizmeti için saklanır.</p>
     <h4>1) Dinleme-grafiği benzerliği (Deezer)</h4>
     <p>Seçtiğin sanatçıyı dinleyenlerin sıklıkla birlikte dinlediği sanatçılar sıralanır. Türkçe ve dünya müziğinde en güçlü katman budur.</p>
     <h4>2) Ortak dinleyici oturumları (ListenBrainz + MusicBrainz)</h4>
@@ -381,7 +465,7 @@ footer.foot a{color:var(--dim);border-bottom:1px dotted var(--line2)}
     <p>Sitede yalnızca <b>30 saniyelik resmî önizleme</b> kayıtları çalar. Müziğin tüm hakları sanatçılara ve plak şirketlerine aittir; tamamını dinlemek için Deezer/Apple Music gibi servisleri kullan.</p>
     <h4>Gizlilik ve güvenlik</h4>
     <ul>
-      <li><b>Sunucu yok:</b> Site tamamen statik; veri toplanmaz, saklanmaz, satılmaz. Hesap, çerez, reklam ve izleme kodu bulunmaz.</li>
+      <li><b>Hesap isteğe bağlı:</b> Siteyi hesap açmadan kullanabilirsin. Hesap açarsan yalnızca hesap hizmeti ve güvenlik için gerekli veriler (kullanıcı adı, e-posta, giriş/aktivite kayıtları) <b>açık rızanla</b> saklanır — ayrıntılar: <a href="#/gizlilik" style="color:#d8b4fe;border-bottom:1px dotted">aydınlatma metni</a>. Reklam ve izleme kodu her koşulda yoktur.</li>
       <li><b>Katı CSP (script hash'li):</b> İçerik güvenlik politikası <i>'sha256-…'</i> ile çalışır — <code>'unsafe-inline'</code> yoktur. Yani sayfaya sonradan enjekte edilen hiçbir kod satırı tarayıcı tarafından <b>çalıştırılamaz</b>; script yalnızca bu dosyadaki imzalı blok ve Deezer (JSONP) olabilir.</li>
       <li><b>URL beyaz listesi:</b> Görsel ve ses adresleri yalnızca Deezer/Apple CDN alan adlarına aitse kabul edilir; API veya tarayıcı verisi (localStorage) kurcalansa bile sayfa dış bir adrese istek atamaz, sahte/zararlı kaynak yükleyemez.</li>
       <li><b>Veri doğrulama:</b> Tüm API ve önbellek verileri alan-alan doğrulanır (tip, uzunluk, sayı aralığı); bozuk/uygunsuz alanlar sessizce atılır.</li>
@@ -636,7 +720,9 @@ const favs = {
     const idx = list.findIndex(f => String(f.id) === String(a.id));
     if(idx >= 0) list.splice(idx,1); else list.unshift(a);
     store.set('favs', list.slice(0,60)); paintFavCount();
-    return idx < 0;
+    const added = idx < 0;
+    favCloudSync(a, added);
+    return added;
   }
 };
 function paintFavCount(){ const n = favs.get().length; $('#favCount').textContent = n ? '('+n+')' : ''; }
@@ -1045,6 +1131,7 @@ async function renderSearch(q){
   q = String(q||'').trim();
   if(!q) return renderHome();
   state.lastQuery = q;
+  logActivity('search', q);
   view.innerHTML = `
     <div class="crumbs"><button data-act="home">← Ana sayfa</button><span>/ arama</span></div>
     <section class="blk" style="margin-top:14px">
@@ -1085,6 +1172,7 @@ async function renderArtist(id, opts={}){
   }
   artist.source = '';
   recents.add(artist);
+  logActivity('artist', artist.name);
   if(opts.pushTrail !== false && (!state.trail.length || String(state.trail[state.trail.length-1].id) !== String(artist.id))){
     state.trail.push({ id:artist.id, name:artist.name });
     if(state.trail.length > 6) state.trail.shift();
@@ -1303,6 +1391,7 @@ async function playTrack(t){
   paintPlayer(t);
   $('#player').classList.add('on');
   paintRows();
+  logActivity('play', (t.title || '') + ' — ' + (t.artist || ''));
   const src = safeUrl(t.preview, 'audio');
   if(src){ audio.src = src; audio.play().catch(() => resolveFallback(t)); }
   else resolveFallback(t);
@@ -1378,6 +1467,9 @@ function route(){
   if(seg === 'artist' && /^\d{1,15}$/.test(val)) return renderArtist(val);
   if(seg === 'track' && /^\d{1,15}$/.test(val)) return renderTrack(val);
   if(seg === 'search' && val) return renderSearch(cleanQuery(val));
+  if(seg === 'hesap')    return renderAccount();
+  if(seg === 'admin')    return renderAdmin();
+  if(seg === 'gizlilik') return renderPrivacy();
   state.trail = [];
   renderHome();
 }
@@ -1502,6 +1594,644 @@ document.addEventListener('click', async e => {
   }
 });
 window.addEventListener('resize', () => {});
+
+/* ================================================================
+   HESAP SİSTEMİ + YÖNETİM PANELİ
+   Gerçek kimlik doğrulama: Supabase (PostgreSQL + Row Level Security).
+   Şifreler sunucuda (bcrypt) saklanır; site şifreyi asla tutmaz.
+   Kurulum: KURULUM.md  ·  Şema ve güvenlik duvarları: supabase/setup.sql
+   ================================================================ */
+const CONFIG = Object.assign(
+  { SUPABASE_URL: '', SUPABASE_ANON_KEY: '' },        /* ← KURULUM.md adım 3 */
+  (typeof window !== 'undefined' && window.BENZERSES_CONFIG) ? window.BENZERSES_CONFIG : {}
+);
+
+const AUTH = (() => {
+  const LS = 'bs:auth';
+  let sess = null, prof = null, profAt = 0;
+  const base = () => String(CONFIG.SUPABASE_URL || '').trim().replace(/\/+$/, '');
+  const key  = () => String(CONFIG.SUPABASE_ANON_KEY || '').trim();
+  const ready = () => !!(base() && key() && /^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(base()));
+  const listeners = [];
+
+  const onChange = fn => listeners.push(fn);
+  const notify = () => listeners.forEach(f => { try{ f(); }catch(e){} });
+  function load(){
+    if(sess) return sess;
+    try{ sess = JSON.parse(localStorage.getItem(LS) || 'null'); }catch(e){ sess = null; }
+    return sess;
+  }
+  function save(s){
+    sess = s;
+    try{ s ? localStorage.setItem(LS, JSON.stringify(s)) : localStorage.removeItem(LS); }catch(e){}
+    notify();
+  }
+  async function raw(path, opts){
+    opts = opts || {};
+    const r = await fetch(base() + path, Object.assign({}, opts, { headers: Object.assign({
+      apikey: key(), 'Content-Type': 'application/json' }, opts.headers || {}) }));
+    const txt = await r.text();
+    let data = null; try{ data = txt ? JSON.parse(txt) : null; }catch(e){ data = txt; }
+    if(!r.ok){
+      const msg = (data && (data.msg || data.error_description || data.message || data.error || data.hint)) || ('HTTP ' + r.status);
+      const err = new Error(String(msg)); err.status = r.status; throw err;
+    }
+    return data;
+  }
+  function setSession(d){
+    const s = { access_token: d.access_token, refresh_token: d.refresh_token, user: d.user,
+                exp: Date.now() + ((d.expires_in || 3600) * 1000) };
+    prof = null; profAt = 0; save(s); return s;
+  }
+  async function refresh(){
+    const s = load(); if(!s || !s.refresh_token) return null;
+    const d = await raw('/auth/v1/token?grant_type=refresh_token',
+      { method:'POST', body: JSON.stringify({ refresh_token: s.refresh_token }) });
+    return setSession(d);
+  }
+  async function ensure(){
+    const s = load(); if(!s) return null;
+    if(!s.exp || Date.now() > s.exp - 60000){
+      try{ return await refresh(); }catch(e){ save(null); return null; }
+    }
+    return s;
+  }
+  async function signUp(email, password, username, consent){
+    return raw('/auth/v1/signup', { method:'POST', body: JSON.stringify({ email, password,
+      data: { username, consent: !!consent } }) });
+  }
+  async function signIn(email, password){
+    const d = await raw('/auth/v1/token?grant_type=password',
+      { method:'POST', body: JSON.stringify({ email, password }) });
+    return setSession(d);
+  }
+  async function signOut(){
+    try{
+      const s = await ensure();
+      if(s) await raw('/auth/v1/logout', { method:'POST', headers:{ Authorization:'Bearer ' + s.access_token } });
+    }catch(e){}
+    prof = null; profAt = 0; save(null);
+  }
+  const recover = email => raw('/auth/v1/recover', { method:'POST', body: JSON.stringify({ email }) });
+  async function user(){
+    const s = await ensure(); if(!s) return null;
+    if(!s.user){
+      try{ s.user = await raw('/auth/v1/user', { headers:{ Authorization:'Bearer ' + s.access_token } }); save(s); }
+      catch(e){ return null; }
+    }
+    return s.user;
+  }
+  async function myProfile(force){
+    const u = await user(); if(!u){ prof = null; return null; }
+    if(prof && !force && Date.now() - profAt < 300000) return prof;
+    try{
+      const rows = await sbRest('profiles?select=*&id=eq.' + encodeURIComponent(u.id) + '&limit=1');
+      prof = (rows && rows[0]) || null; profAt = Date.now();
+    }catch(e){ prof = null; }
+    return prof;
+  }
+  function invalidate(){ prof = null; profAt = 0; }
+
+  return { ready, onChange, notify, signUp, signIn, signOut, recover, user, myProfile,
+           invalidate, connect: ensure, session: load, setSession,
+           get profile(){ return prof; } };
+})();
+
+/* ---- veri katmanı: PostgREST (RLS korumalı) ---- */
+async function sbRest(path, opts){
+  opts = opts || {};
+  const s = await AUTH.connect();
+  const headers = Object.assign({
+    apikey: CONFIG.SUPABASE_ANON_KEY,
+    Authorization: 'Bearer ' + (s ? s.access_token : CONFIG.SUPABASE_ANON_KEY),
+    'Content-Type': 'application/json'
+  }, opts.headers || {});
+  const r = await fetch(String(CONFIG.SUPABASE_URL).trim().replace(/\/+$/, '') + '/rest/v1/' + path,
+    Object.assign({}, opts, { headers }));
+  const txt = await r.text();
+  let data = null; try{ data = txt ? JSON.parse(txt) : null; }catch(e){ data = txt; }
+  if(!r.ok) throw new Error(String((data && (data.message || data.hint || data.error)) || ('HTTP ' + r.status)));
+  return data;
+}
+const sbRpc = (fn, args) => sbRest('rpc/' + fn, { method:'POST', body: JSON.stringify(args || {}) });
+async function sbCount(table, query){
+  const s = await AUTH.connect();
+  const url = String(CONFIG.SUPABASE_URL).trim().replace(/\/+$/, '') + '/rest/v1/' + table +
+    '?select=id' + (query ? '&' + query : '');
+  const r = await fetch(url, { headers: {
+    apikey: CONFIG.SUPABASE_ANON_KEY,
+    Authorization: 'Bearer ' + (s ? s.access_token : CONFIG.SUPABASE_ANON_KEY),
+    Prefer: 'count=exact', Range: '0-0' } });
+  return parseInt(String(r.headers.get('Content-Range') || '*/0').split('/')[1] || '0', 10) || 0;
+}
+const errMsg = e => {
+  const s = String((e && e.message) || e || '');
+  if(/Invalid login credentials/i.test(s)) return 'E-posta veya şifre hatalı.';
+  if(/already registered|already exists|duplicate/i.test(s)) return 'Bu e-posta ile zaten bir hesap var — giriş yapmayı dene.';
+  if(/not confirmed/i.test(s)) return 'E-postanı henüz doğrulamadın. Gelen kutunu (ve spam klasörünü) kontrol et.';
+  if(/at least 8|password should/i.test(s)) return 'Şifre en az 8 karakter olmalı.';
+  if(/rate limit|too many/i.test(s)) return 'Çok fazla deneme yapıldı; biraz bekleyip tekrar dene.';
+  if(/valid email/i.test(s)) return 'Geçerli bir e-posta adresi gir.';
+  if(/Giriş gerekli/i.test(s)) return 'Önce giriş yapmalısın.';
+  if(/Yetki yok/i.test(s)) return 'Bu işlem için yetkin yok.';
+  return s.slice(0, 200) || 'Bilinmeyen hata';
+};
+
+/* ---- oturum kaydı + aktivite (yalnızca girişli + onaylı kullanıcı) ---- */
+let lastSessionLog = 0;
+async function logSessionOnce(){
+  try{
+    const u = await AUTH.user(); if(!u) return;
+    if(Date.now() - lastSessionLog < 60000) return; lastSessionLog = Date.now();
+    await sbRest('sessions_log', { method:'POST', headers:{ Prefer:'return=minimal' }, body: JSON.stringify({
+      user_id: u.id,
+      user_agent: String(navigator.userAgent || '').slice(0, 400),
+      platform: (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || '',
+      language: navigator.language || '',
+      timezone: (Intl.DateTimeFormat().resolvedOptions().timeZone) || '',
+      screen: (window.screen ? screen.width + 'x' + screen.height : ''),
+      referrer: document.referrer || ''
+    }) });
+    try{ await sbRpc('touch_login'); }catch(e){}
+  }catch(e){}
+}
+const actSeen = {};
+async function logActivity(kind, detail){
+  try{
+    if(!AUTH.ready()) return;
+    const u = await AUTH.user(); if(!u) return;
+    const p = AUTH.profile || await AUTH.myProfile();
+    if(!p || !p.consent_at) return;                       /* onay yoksa KAYDETME */
+    const k = kind + '|' + detail;
+    if(Date.now() - (actSeen[k] || 0) < 15000) return;
+    actSeen[k] = Date.now();
+    await sbRest('activity', { method:'POST', headers:{ Prefer:'return=minimal' }, body: JSON.stringify({
+      user_id: u.id, kind, detail: String(detail || '').slice(0, 200) }) });
+  }catch(e){}
+}
+
+/* ---- favori bulut eşitleme ---- */
+async function favCloudSync(a, added){
+  try{
+    if(!AUTH.ready() || !a || !a.id || isNaN(Number(a.id))) return;
+    const u = await AUTH.user(); if(!u) return;
+    if(added){
+      await sbRest('favorites', { method:'POST', headers:{ Prefer:'resolution=merge-duplicates,return=minimal' },
+        body: JSON.stringify({ user_id: u.id, artist_id: Number(a.id), name: a.name || '', picture: a.picture || '' }) });
+    } else {
+      await sbRest('favorites?user_id=eq.' + u.id + '&artist_id=eq.' + Number(a.id), { method:'DELETE' });
+    }
+  }catch(e){}
+}
+async function syncFavorites(){
+  const u = await AUTH.user(); if(!u) return;
+  let cloud = [];
+  try{ cloud = (await sbRest('favorites?select=artist_id,name,picture&limit=1000')) || []; }catch(e){}
+  const localList = favs.get();
+  const cloudIds = {};
+  cloud.forEach(c => { cloudIds[String(c.artist_id)] = true; });
+  for(const c of cloud){
+    if(!localList.some(f => String(f.id) === String(c.artist_id)))
+      localList.push({ id: c.artist_id, name: c.name || '', picture: c.picture || '', fans: 0, source: '' });
+  }
+  store.set('favs', localList.slice(0, 60));
+  const toPush = localList.filter(f => f.id && !cloudIds[String(f.id)]);
+  if(toPush.length){
+    try{
+      await sbRest('favorites', { method:'POST', headers:{ Prefer:'resolution=merge-duplicates,return=minimal' },
+        body: JSON.stringify(toPush.map(f => ({ user_id: u.id, artist_id: Number(f.id), name: f.name, picture: f.picture }))) });
+    }catch(e){}
+  }
+  paintFavCount();
+}
+
+/* ---- görüntüleme yardımcıları ---- */
+function uaParse(ua){
+  ua = String(ua || ''); const out = [];
+  const os = [[/Windows NT 10/, 'Windows'], [/Windows/, 'Windows'], [/Mac OS X/, 'macOS'], [/Android/, 'Android'],
+              [/iPhone|iPad|iOS/, 'iOS'], [/CrOS/, 'ChromeOS'], [/Linux/, 'Linux']];
+  for(const p of os){ if(p[0].test(ua)){ out.push(p[1]); break; } }
+  const br = [[/Edg\//, 'Edge'], [/OPR\/|Opera/, 'Opera'], [/Firefox\//, 'Firefox'], [/Chrome\//, 'Chrome'], [/Safari\//, 'Safari']];
+  for(const p of br){ if(p[0].test(ua)){ out.push(p[1]); break; } }
+  return out.join(' · ') || 'Bilinmiyor';
+}
+const maskIp = ip => { if(!ip) return '—'; const s = String(ip);
+  return s.includes(':') ? s.split(':').slice(0,3).join(':') + ':…' : s.replace(/\.\d+$/, '.x'); };
+const tsShort = t => { try{ return new Date(t).toLocaleString('tr-TR',
+  { day:'2-digit', month:'2-digit', year:'2-digit', hour:'2-digit', minute:'2-digit' }); }catch(e){ return '—'; } };
+
+/* ---- üst menü: hesap alanı ---- */
+function renderAuthArea(){
+  const el = document.getElementById('authArea'); if(!el) return;
+  const s = AUTH.ready() ? AUTH.session() : null;
+  const u = s && s.user;
+  if(!u){
+    el.innerHTML = `<button class="btn" data-act="auth-open" data-tab="login" style="padding:9px 14px">Giriş</button>
+      <button class="btn pri" data-act="auth-open" data-tab="reg" style="padding:9px 14px">Kayıt ol</button>`;
+    return;
+  }
+  const p = AUTH.profile;
+  const nm = (p && p.username) || (u.email || 'hesabım').split('@')[0];
+  el.innerHTML = `<div class="uchip" data-act="account" title="Hesabım">
+      <div class="av">${esc(nm.charAt(0).toUpperCase())}</div><b>${esc(nm)}</b></div>
+    ${p && p.is_admin ? '<button class="btn pri" data-act="admin" style="padding:9px 13px">Yönetim</button>' : ''}`;
+}
+
+/* ---- giriş / kayıt penceresi ---- */
+let authTab = 'login';
+function openAuth(tab){
+  authTab = (tab === 'reg') ? 'reg' : 'login';
+  const m = document.getElementById('authModal'); if(!m) return;
+  m.classList.add('on'); paintAuthTab();
+  setTimeout(() => { const i = document.getElementById('fEmail'); if(i) i.focus({preventScroll:true}); }, 60);
+}
+function closeAuth(){ const m = document.getElementById('authModal'); if(m) m.classList.remove('on'); }
+function paintAuthTab(){
+  const reg = authTab === 'reg';
+  $$('#authTabs button').forEach(b => b.classList.toggle('on', b.dataset.tab === authTab));
+  document.getElementById('fUserWrap').style.display = reg ? '' : 'none';
+  document.getElementById('fConsentWrap').style.display = reg ? '' : 'none';
+  document.getElementById('authSubmit').textContent = reg ? 'Hesap oluştur' : 'Giriş yap';
+  document.getElementById('authTitle').textContent = reg ? 'Yeni hesap oluştur' : 'Hesabına giriş yap';
+  document.getElementById('fPass').setAttribute('autocomplete', reg ? 'new-password' : 'current-password');
+  authMsg('');
+  const note = document.getElementById('authNote');
+  const sub = document.getElementById('authSubmit');
+  if(!AUTH.ready()){
+    note.innerHTML = '⚠️ Kayıt sistemi henüz etkinleştirilmedi. Site sahibi <b>KURULUM.md</b> dosyasındaki ' +
+      '3 adımı tamamlayınca burası otomatik çalışır (ücretsiz, ~5 dakika).';
+    sub.disabled = true;
+  } else {
+    note.innerHTML = reg ? 'Kayıt sonrası e-postana doğrulama bağlantısı gelebilir — gelen kutunu kontrol et.'
+                         : 'Şifreni paylaşma; BenzerSes şifreni görmez (yalnızca şifreli özetini doğrular).';
+    sub.disabled = false;
+  }
+}
+function authMsg(txt, ok){
+  const el = document.getElementById('authErr'); if(!el) return;
+  if(!txt){ el.className = 'autherr'; el.innerHTML = ''; return; }
+  el.className = 'autherr on' + (ok ? ' ok' : '');
+  el.innerHTML = txt;
+}
+async function submitAuth(e){
+  e.preventDefault();
+  if(!AUTH.ready()){ authMsg('Kayıt sistemi kurulmamış (KURULUM.md).'); return; }
+  const email = document.getElementById('fEmail').value.trim();
+  const pass  = document.getElementById('fPass').value;
+  const user  = document.getElementById('fUser').value.trim();
+  const riza  = document.getElementById('fRiza').checked;
+  const btn   = document.getElementById('authSubmit');
+  if(!/^\S+@\S+\.\S+$/.test(email)){ authMsg('Geçerli bir e-posta adresi gir.'); return; }
+  if(pass.length < 8){ authMsg('Şifre en az 8 karakter olmalı.'); return; }
+  if(authTab === 'reg' && user.length < 3){ authMsg('Kullanıcı adı en az 3 karakter olmalı.'); return; }
+  if(authTab === 'reg' && !riza){ authMsg('Devam etmek için veri işleme onayını (KVKK) işaretlemelisin.'); return; }
+  btn.disabled = true; authMsg('İşleniyor…', true);
+  try{
+    if(authTab === 'reg'){
+      const d = await AUTH.signUp(email, pass, user, true);
+      if(d && d.access_token){
+        AUTH.setSession(d);
+        await AUTH.myProfile(true); await syncFavorites(); await logSessionOnce();
+        renderAuthArea();
+        authMsg('Hesabın hazır, hoş geldin! 🎉', true);
+        setTimeout(() => { closeAuth(); go('#/hesap'); }, 900);
+      } else {
+        authMsg('Kaydın alındı! Şimdi <b>e-postana gelen doğrulama bağlantısına</b> tıkla, ardından giriş yap.', true);
+      }
+    } else {
+      await AUTH.signIn(email, pass);
+      await AUTH.myProfile(true); await syncFavorites(); await logSessionOnce();
+      renderAuthArea();
+      authMsg('Giriş başarılı!', true);
+      setTimeout(() => { closeAuth(); go('#/hesap'); }, 700);
+    }
+  }catch(err){ authMsg(errMsg(err)); }
+  finally{ btn.disabled = false; }
+}
+async function forgotPass(){
+  if(!AUTH.ready()) return authMsg('Kayıt sistemi kurulmamış.');
+  const email = document.getElementById('fEmail').value.trim();
+  if(!email) return authMsg('Önce e-posta adresini yaz, sonra "Şifremi unuttum"a bas.');
+  try{ await AUTH.recover(email); authMsg('Şifre sıfırlama bağlantısı e-postana gönderildi. 📬', true); }
+  catch(err){ authMsg(errMsg(err)); }
+}
+
+/* ---- HESABIM ---- */
+async function renderAccount(){
+  if(!AUTH.ready()){ view.innerHTML = setupBox(); return; }
+  const u = await AUTH.user();
+  if(!u){
+    view.innerHTML = `<div class="crumbs"><button data-act="home">← Ana sayfa</button><span>/ hesabım</span></div>
+      <div class="emptybox" style="margin-top:20px">Bu sayfa için <b>giriş yapmalısın</b>.<br><br>
+      <button class="btn pri" data-act="auth-open" data-tab="login">Giriş yap</button>
+      <button class="btn" data-act="auth-open" data-tab="reg">Kayıt ol</button></div>`;
+    return;
+  }
+  view.innerHTML = `<div class="crumbs"><button data-act="home">← Ana sayfa</button><span>/ hesabım</span></div>
+    <section class="blk" style="margin-top:14px">
+      <div class="blkhead"><h2>Hesabım</h2></div>
+      <div id="accBody">${skelRows(3)}</div>
+    </section>`;
+  const p = await AUTH.myProfile(true);
+  let sessCount = 0, actCount = 0, favCount = 0;
+  try{ sessCount = await sbCount('sessions_log', 'user_id=eq.' + u.id); }catch(e){}
+  try{ actCount  = await sbCount('activity', 'user_id=eq.' + u.id); }catch(e){}
+  try{ favCount  = await sbCount('favorites', 'user_id=eq.' + u.id); }catch(e){}
+  const nm = (p && p.username) || (u.email || '').split('@')[0];
+  const el = document.getElementById('accBody'); if(!el) return;
+  el.innerHTML = `
+    <div class="statgrid">
+      <div class="stat"><b>${esc(nm)}</b><span>KULLANICI ADI</span></div>
+      <div class="stat"><b>${favCount}</b><span>BULUTTAKİ FAVORİ</span></div>
+      <div class="stat"><b>${sessCount}</b><span>GİRİŞ KAYDI</span></div>
+      <div class="stat"><b>${actCount}</b><span>AKTİVİTE KAYDI</span></div>
+    </div>
+    <div class="info" style="margin-bottom:18px">
+      <div class="infoc"><b>E-posta</b><p>${esc(u.email || '—')}</p></div>
+      <div class="infoc"><b>Kayıt tarihi</b><p>${p ? tsShort(p.created_at) : '—'}</p></div>
+      <div class="infoc"><b>Son giriş</b><p>${p && p.last_login ? tsShort(p.last_login) : '—'}</p></div>
+      <div class="infoc"><b>Veri işleme onayı</b><p>${p && p.consent_at ? '✔️ ' + tsShort(p.consent_at) : '⚠️ onay kaydı yok'}</p></div>
+    </div>
+    <div class="authtabbar">
+      <button class="btn" data-act="acc-rename">✏️ Kullanıcı adını değiştir</button>
+      <button class="btn" data-act="acc-refresh">🔄 Favorileri eşitle</button>
+      <button class="btn" data-act="acc-export">⬇️ Verilerimi indir</button>
+      <button class="btn" data-act="auth-logout">🚪 Çıkış yap</button>
+      <button class="btn ghost" data-act="acc-wipe" style="border-color:rgba(236,72,153,.4);color:#fda4d0">🗑️ Verilerimi sil</button>
+    </div>
+    <div class="note">Şifre değiştirme: çıkış yap → giriş ekranı → “Şifremi unuttum”. &nbsp;•&nbsp;
+      Verilerinin bir kopyasını JSON olarak indirebilir, dilediğin an sildirebilirsin.
+      <a href="#/gizlilik" style="color:#d8b4fe;border-bottom:1px dotted">Aydınlatma metni →</a></div>`;
+}
+function setupBox(){
+  return `<div class="crumbs"><button data-act="home">← Ana sayfa</button></div>
+    <div class="emptybox" style="margin-top:26px;text-align:left;max-width:660px">
+    <b>⚙️ Kayıt sistemi henüz etkinleştirilmedi</b><br><br>
+    Site sahibi <b>KURULUM.md</b> dosyasındaki 3 adımı tamamlayınca (ücretsiz Supabase veritabanı,
+    ~5 dakika) giriş/kayıt ve yönetim paneli otomatik olarak devreye girer.<br><br>
+    <span class="note">Kurulum tamamlanınca bu sayfa yerine gerçek kullanıcı paneli görünür.</span></div>`;
+}
+
+/* ---- AYDINLATMA METNİ (#/gizlilik) ---- */
+function renderPrivacy(){
+  view.innerHTML = `<div class="crumbs"><button data-act="home">← Ana sayfa</button><span>/ aydınlatma metni</span></div>
+  <section class="blk" style="margin-top:14px;max-width:860px">
+    <div class="blkhead"><h2>Gizlilik &amp; Aydınlatma Metni</h2><div class="sub">KVKK (6698) uyumlu özet</div></div>
+    <div class="info">
+      <div class="infoc"><b>1) Veri sorumlusu</b><p>BenzerSes — kişisel proje. İletişim: sitenin GitHub deposundaki iletişim kanalı.</p></div>
+      <div class="infoc"><b>2) Hangi veriler işlenir?</b><p><b>Hesap:</b> kullanıcı adı, e-posta, şifre özeti (bcrypt, okunamaz).
+        <b>Teknik:</b> giriş zamanı, tarayıcı/cihaz bilgisi, dil, saat dilimi, ekran boyutu, IP adresi.
+        <b>Kullanım:</b> site içi dinleme/arama aktivitesi ve favoriler.</p></div>
+      <div class="infoc"><b>3) Amaçlar</b><p>Hesap oluşturma ve giriş, favorilerin cihazlar arası eşitlenmesi,
+        güvenlik ve kötüye kullanımın önlenmesi, hizmetin iyileştirilmesi.</p></div>
+      <div class="infoc"><b>4) Hukuki sebep</b><p>KVKK m.5/1 – sözleşmenin ifası ve <b>açık rıza</b> (kayıt ekranındaki onay kutusu;
+        onay zamanı kaydedilir). Onay vermeden kayıt olmaz.</p></div>
+      <div class="infoc"><b>5) Saklama süresi</b><p>Profil: hesabın aktif olduğu sürece. Oturum ve aktivite kayıtları: en fazla 12 ay,
+        ardından silinir.</p></div>
+      <div class="infoc"><b>6) Aktarım</b><p>Veriler Supabase (Avrupa Birliği / Frankfurt) altyapısında barındırılır.
+        Verileriniz <b>satılmaz</b>, reklam amaçlı paylaşılmaz. Müzik aramaları Deezer/iTunes/MusicBrainz'a gider (hesabınla ilişkilendirilmez).</p></div>
+      <div class="infoc"><b>7) Haklarınız</b><p>Bilgi alma, düzeltme, <b>silme</b>, işlemeye itiraz. Uygulamak için:
+        <b>Hesabım → Verilerimi sil</b> (anında) veya depodaki iletişim kanalından talep.</p></div>
+      <div class="infoc"><b>8) Çerezler ve yerel depolama</b><p>Yalnızca <b>birinci taraf</b> veriler kullanılır:
+        oturum bilgisi, favoriler ve arama önbelleği (tarayıcının localStorage alanında). Reklam/izleme çerezi <b>yoktur</b>;
+        başka sitelerin verileri okunmaz. Tarayıcı verilerini silerek veya <b>Hesabım → Verilerimi sil</b> ile temizleyebilirsin.</p></div>
+      <div class="infoc"><b>9) Yönetici erişimi</b><p>Site sahibi panelde: kayıt/giriş kayıtlarını, cihaz bilgisini ve
+        (maskeli) IP adresini görebilir. Şifreler ve oturum anahtarları <b>hiçbir zaman</b> görüntülenemez.</p></div>
+      <div class="infoc"><b>10) Çocuklar</b><p>13 yaş altı kullanıcılar için tasarlanmamıştır.</p></div>
+    </div>
+    <div class="note" style="margin-top:16px">Not: Bu metin genel bilgilendirme amaçlıdır; ticari kullanım öncesi bir hukuk uzmanına danışmanız önerilir.</div>
+  </section>`;
+}
+
+/* ---- YÖNETİM PANELİ (#/admin) ---- */
+async function renderAdmin(){
+  if(!AUTH.ready()){ view.innerHTML = setupBox(); return; }
+  const u = await AUTH.user();
+  if(!u){
+    view.innerHTML = `<div class="crumbs"><button data-act="home">← Ana sayfa</button><span>/ yönetim</span></div>
+      <div class="emptybox" style="margin-top:20px">Bu bölüm için <b>giriş yapmalısın</b>.<br><br>
+      <button class="btn pri" data-act="auth-open" data-tab="login">Giriş yap</button></div>`;
+    return;
+  }
+  const p = await AUTH.myProfile(true);
+  if(!p || !p.is_admin){
+    view.innerHTML = `<div class="crumbs"><button data-act="home">← Ana sayfa</button><span>/ yönetim</span></div>
+      <div class="emptybox" style="margin-top:20px">Bu bölüm yalnızca <b>yönetici</b> içindir.
+      Yetkin yoksa hiçbir veri görünmez (veritabanı seviyesinde kilitlidir).</div>`;
+    return;
+  }
+  view.innerHTML = `<div class="crumbs"><button data-act="home">← Ana sayfa</button><span>/ yönetim</span></div>
+    <section class="blk" style="margin-top:14px">
+      <div class="blkhead"><h2>Yönetim Paneli</h2><div class="sub">yalnızca site sahibi görebilir</div></div>
+      <div id="adminBody">${skelRows(6)}</div>
+    </section>`;
+  await loadAdmin();
+}
+async function loadAdmin(){
+  const body = document.getElementById('adminBody'); if(!body) return;
+  body.innerHTML = skelRows(6);
+  try{
+    const today = new Date(); today.setHours(0, 0, 0, 0);
+    const [uC, sC, aC, tC, users, sessions, acts] = await Promise.all([
+      sbCount('profiles'), sbCount('sessions_log'), sbCount('activity'),
+      sbCount('sessions_log', 'created_at=gte.' + today.toISOString()),
+      sbRest('profiles?select=*&order=created_at.desc&limit=300'),
+      sbRest('sessions_log?select=*,profiles(username,email)&order=created_at.desc&limit=200'),
+      sbRest('activity?select=*,profiles(username,email)&order=created_at.desc&limit=300')
+    ]);
+    window.__admin = { users: users || [], sessions: sessions || [], acts: acts || [] };
+    const top = {};
+    (acts || []).filter(a => a.kind === 'play').forEach(a => { const k = a.detail || ''; if(k) top[k] = (top[k] || 0) + 1; });
+    const topList = Object.entries(top).sort((a, b) => b[1] - a[1]).slice(0, 10);
+    body.innerHTML = `
+      <div class="statgrid">
+        <div class="stat"><b>${uC}</b><span>TOPLAM KULLANICI</span></div>
+        <div class="stat"><b>${tC}</b><span>BUGÜNKÜ OTURUM</span></div>
+        <div class="stat"><b>${sC}</b><span>TOPLAM OTURUM</span></div>
+        <div class="stat"><b>${aC}</b><span>AKTİVİTE KAYDI</span></div>
+      </div>
+      <div class="authtabbar">
+        <button class="btn" data-act="admin-refresh">🔄 Yenile</button>
+        <button class="btn" data-act="admin-csv">⬇️ CSV indir</button>
+        <span class="note" style="align-self:center">İşlemler veritabanı güvenlik duvarları (RLS) ile korunur; şifreler ve oturum anahtarları asla görüntülenemez.</span>
+      </div>
+
+      <section class="blk"><div class="blkhead"><h2>Kullanıcılar</h2><div class="sub">${(users || []).length} kayıt</div></div>
+        <div class="tblwrap"><table class="tbl"><thead><tr>
+          <th>Kullanıcı</th><th>E-posta</th><th>Kayıt</th><th>Son giriş</th><th>Onay</th><th>Durum</th><th>İşlem</th>
+        </tr></thead><tbody>
+        ${(users || []).map(ur => `<tr>
+          <td><b>${esc(ur.username || '—')}</b></td>
+          <td class="mono-s">${esc(ur.email || '—')}</td>
+          <td class="mono-s">${tsShort(ur.created_at)}</td>
+          <td class="mono-s">${ur.last_login ? tsShort(ur.last_login) : '—'}</td>
+          <td>${ur.consent_at ? '<span class="pill ok">onaylı</span>' : '<span class="pill no">yok</span>'}</td>
+          <td>${ur.is_admin ? '<span class="pill adm">yönetici</span>' : '<span class="pill">üye</span>'}</td>
+          <td style="white-space:nowrap">
+            <button class="mini" data-act="admin-toggle" data-user="${esc(ur.id)}" data-val="${ur.is_admin ? '0' : '1'}">${ur.is_admin ? 'Yetkiyi al' : 'Yönetici yap'}</button>
+            <button class="mini danger" data-act="admin-wipe" data-user="${esc(ur.id)}" data-name="${esc(ur.username || '')}">Verilerini sil</button>
+          </td></tr>`).join('')}
+        </tbody></table></div></section>
+
+      <section class="blk"><div class="blkhead"><h2>Oturum kayıtları</h2><div class="sub">cihaz · dil · saat dilimi · maskeli IP — son 200</div></div>
+        <div class="tblwrap"><table class="tbl"><thead><tr>
+          <th>Kullanıcı</th><th>Cihaz</th><th>Dil</th><th>Saat dilimi</th><th>Ekran</th><th>IP</th><th>Tarih</th>
+        </tr></thead><tbody>
+        ${(sessions || []).map(s => `<tr>
+          <td><b>${esc((s.profiles && s.profiles.username) || '—')}</b><div class="mono-s">${esc((s.profiles && s.profiles.email) || '')}</div></td>
+          <td>${esc(uaParse(s.user_agent))}<div class="mono-s" title="${esc(s.user_agent || '')}">${esc(String(s.user_agent || '').slice(0, 48))}${String(s.user_agent || '').length > 48 ? '…' : ''}</div></td>
+          <td class="mono-s">${esc(s.language || '—')}</td>
+          <td class="mono-s">${esc(s.timezone || '—')}</td>
+          <td class="mono-s">${esc(s.screen || '—')}</td>
+          <td class="mono-s">${esc(maskIp(s.ip))}</td>
+          <td class="mono-s">${tsShort(s.created_at)}</td>
+        </tr>`).join('')}
+        </tbody></table></div></section>
+
+      <section class="blk"><div class="blkhead"><h2>Aktivite akışı</h2><div class="sub">dinleme · arama · sanatçı ziyareti — son 300</div></div>
+        <div class="tblwrap"><table class="tbl"><thead><tr>
+          <th>Kullanıcı</th><th>Tür</th><th>Detay</th><th>Tarih</th>
+        </tr></thead><tbody>
+        ${(acts || []).map(a => `<tr>
+          <td><b>${esc((a.profiles && a.profiles.username) || '—')}</b></td>
+          <td><span class="pill">${esc(a.kind || '')}</span></td>
+          <td>${esc(a.detail || '')}</td>
+          <td class="mono-s">${tsShort(a.created_at)}</td>
+        </tr>`).join('')}
+        </tbody></table></div></section>
+
+      ${topList.length ? `<section class="blk"><div class="blkhead"><h2>En çok dinlenenler</h2><div class="sub">aktivite kayıtlarından</div></div>
+        <div class="tblwrap"><table class="tbl"><tbody>
+        ${topList.map(x => `<tr><td>${esc(x[0])}</td><td class="mono-s" style="text-align:right">${x[1]}×</td></tr>`).join('')}
+        </tbody></table></div></section>` : ''}
+
+      <section class="blk"><div class="blkhead"><h2>Görünmeyenler ve nedenleri</h2></div>
+        <div class="info">
+          <div class="infoc"><b>Şifreler</b><p>Sunucuda tek yönlü (bcrypt) saklanır; hiç kimse — yönetici dahil — göremez.</p></div>
+          <div class="infoc"><b>Oturum anahtarları</b><p>Gösterilseydi paneli ele geçiren biri tüm hesaplara girebilirdi; güvenlik gereği gösterilmez.</p></div>
+          <div class="infoc"><b>Kullanıcının tarayıcı verileri</b><p>Favoriler/önbellek kullanıcının kendi tarayıcısındadır; <b>hiçbir site uzaktan okuyamaz</b>. Sunucudaki eşdeğeri favoriler tablosudur.</p></div>
+          <div class="infoc"><b>Diğer sitelerin çerezleri</b><p>Teknik olarak imkânsız ve KVKK/TCK kapsamında suçtur — bu nedenle yoktur.</p></div>
+        </div>
+      </section>`;
+  }catch(e){
+    body.innerHTML = `<div class="emptybox">Panel verisi alınamadı: ${esc(errMsg(e))}<br><br>
+      <button class="btn" data-act="admin-refresh">Tekrar dene</button></div>`;
+  }
+}
+function adminCsv(){
+  const d = window.__admin; if(!d) return toast('Önce paneli yükle');
+  const rows = [['tip', 'kullanici', 'eposta', 'detay', 'tarih']];
+  (d.users || []).forEach(u => rows.push(['kullanici', u.username || '', u.email || '', (u.is_admin ? 'yonetici' : 'uye'), u.created_at || '']));
+  (d.sessions || []).forEach(s => rows.push(['oturum', (s.profiles && s.profiles.username) || '', (s.profiles && s.profiles.email) || '',
+    uaParse(s.user_agent) + ' | ' + (s.language || '') + ' | ' + (s.timezone || '') + ' | ' + maskIp(s.ip), s.created_at || '']));
+  (d.acts || []).forEach(a => rows.push(['aktivite:' + (a.kind || ''), (a.profiles && a.profiles.username) || '', '', a.detail || '', a.created_at || '']));
+  const csv = rows.map(r => r.map(c => '"' + String(c).replace(/"/g, '""') + '"').join(';')).join('\r\n');
+  const a = document.createElement('a');
+  a.href = 'data:text/csv;charset=utf-8,\uFEFF' + encodeURIComponent(csv);
+  a.download = 'benzerses-panel-' + new Date().toISOString().slice(0, 10) + '.csv';
+  a.click();
+}
+
+/* ---- hesap sistemi olayları (kendi delege dinleyicimiz) ---- */
+document.addEventListener('click', async e => {
+  const el = e.target.closest('[data-act]'); if(!el) return;
+  const act = el.dataset.act || '';
+  if(!/^(auth-|acc-|account$|admin|admin-|gizlilik$)/.test(act)) return;
+  switch(act){
+    case 'auth-open': openAuth(el.dataset.tab); break;
+    case 'auth-close': closeAuth(); break;
+    case 'auth-tab': authTab = el.dataset.tab; paintAuthTab(); break;
+    case 'auth-logout': {
+      await AUTH.signOut(); renderAuthArea();
+      toast('Çıkış yapıldı 👋');
+      if(/hesap|admin/.test(location.hash)) go('#/');
+      break;
+    }
+    case 'account': go('#/hesap'); break;
+    case 'admin': go('#/admin'); break;
+    case 'admin-refresh': loadAdmin(); break;
+    case 'admin-csv': adminCsv(); break;
+    case 'admin-toggle': {
+      try{
+        await sbRpc('set_admin', { p_user: el.dataset.user, p_admin: el.dataset.val === '1' });
+        toast('Yetki güncellendi'); loadAdmin();
+      }catch(err){ toast(errMsg(err)); }
+      break;
+    }
+    case 'admin-wipe': {
+      if(!confirm('“' + (el.dataset.name || '') + '” kullanıcısının tüm kayıtları (oturum + aktivite + favoriler) silinsin mi?')) break;
+      try{ await sbRpc('delete_user_data', { p_user: el.dataset.user }); toast('Kullanıcı verileri silindi'); loadAdmin(); }
+      catch(err){ toast(errMsg(err)); }
+      break;
+    }
+    case 'acc-rename': {
+      const cur = (AUTH.profile && AUTH.profile.username) || '';
+      const yeni = prompt('Yeni kullanıcı adı (3-24 karakter):', cur);
+      if(!yeni) break;
+      try{
+        await sbRpc('set_username', { p_name: yeni });
+        AUTH.invalidate(); await AUTH.myProfile(true); renderAuthArea();
+        toast('Kullanıcı adı güncellendi'); renderAccount();
+      }catch(err){ toast(errMsg(err)); }
+      break;
+    }
+    case 'acc-refresh': await syncFavorites(); toast('Favoriler eşitlendi 🔄'); renderAccount(); break;
+    case 'acc-export': {
+      try{
+        const u = await AUTH.user();
+        const [p2, fs, ss, as] = await Promise.all([
+          AUTH.myProfile(true),
+          sbRest('favorites?select=*').catch(() => []),
+          sbRest('sessions_log?select=*&order=created_at.desc&limit=500').catch(() => []),
+          sbRest('activity?select=*&order=created_at.desc&limit=1000').catch(() => [])
+        ]);
+        const dump = { hesap: { id: u.id, email: u.email }, profil: p2, favoriler: fs, oturumlar: ss, aktiviteler: as };
+        const a = document.createElement('a');
+        a.href = 'data:application/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(dump, null, 2));
+        a.download = 'benzerses-verilerim.json'; a.click();
+        toast('Verilerin indirildi ⬇️');
+      }catch(err){ toast(errMsg(err)); }
+      break;
+    }
+    case 'acc-wipe': {
+      if(!confirm('Tüm hesap verilerin (favoriler, oturum ve aktivite kayıtları) silinsin mi? Bu işlem geri alınamaz.')) break;
+      try{
+        const u = await AUTH.user();
+        await sbRpc('delete_user_data', { p_user: u.id });
+        store.del('favs'); paintFavCount(); toast('Verilerin silindi 🗑️'); renderAccount();
+      }catch(err){ toast(errMsg(err)); }
+      break;
+    }
+  }
+});
+
+/* ---- form bağlantıları ---- */
+(function bindAuthForm(){
+  const f = document.getElementById('authForm');
+  const g = document.getElementById('authForgot');
+  const m = document.getElementById('authModal');
+  if(f) f.addEventListener('submit', submitAuth);
+  if(g) g.addEventListener('click', forgotPass);
+  if(m) m.addEventListener('click', e => { if(e.target === m) closeAuth(); });
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') closeAuth(); });
+})();
+
+/* ---- hesap sistemi başlangıcı ---- */
+AUTH.onChange(() => renderAuthArea());
+(async function initAuth(){
+  renderAuthArea();
+  try{
+    if(AUTH.ready()){
+      await AUTH.connect();
+      if(AUTH.session() && AUTH.session().user){
+        await AUTH.myProfile(true);
+        renderAuthArea();
+        await logSessionOnce();
+        syncFavorites();
+      }
+    }
+  }catch(e){}
+})();
 
 /* ---------------- başlat ---------------- */
 paintFavCount();
