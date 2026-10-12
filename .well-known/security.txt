@@ -1,5 +1,0 @@
-Contact: https://github.com/ruzgargure10-gif/benzerses/issues
-Expires: 2027-12-31T23:59:59Z
-Preferred-Languages: tr, en
-Canonical: https://ruzgargure10-gif.github.io/benzerses/.well-known/security.txt
-Policy: https://github.com/ruzgargure10-gif/benzerses/blob/main/SECURITY.md
